@@ -1,0 +1,131 @@
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
+	<script src="../lib/p5.speech.js"></script>
+	<script>
+
+var myRec = new p5.SpeechRec('en-US', parseResult); // new P5.SpeechRec object
+	myRec.continuous = true; // do continuous recognition
+	myRec.interimResults = true; // allow partial recognition (faster, less accurate)
+
+	var myVoice = new p5.Speech(); // new P5.Speech object
+
+// let anymore;
+// let bones;
+let anymore, bones, cars, choking, curse, fart, hotdog, internet, please, shirt, tugger, wah, coffin;
+var label;
+
+function preload(){
+	anymore = loadImage('img/anymore.jpg');
+	bones = loadImage('img/bones.jpg');
+	cars = loadImage('img/cars.jpg');
+	choking = loadImage('img/choking.jpg');
+	curse = loadImage('img/curse.jpeg');
+	fart = loadImage('img/fart.jpg');
+	hotdog = loadImage('img/hotdog.jpg');
+	internet = loadImage('img/internet.jpg');
+	please = loadImage('img/please.png');
+	shirt - loadImage('img/shirt.jpg');
+	tugger = loadImage('img/tugger.png');
+	wah = loadImage('img/wah.jpg');
+	coffin = loadImage('img/coffin.jpg');
+}
+	function setup()
+	{
+		// graphics stuff:
+		createCanvas(1000, 600);
+		background(255, 255, 255);
+		fill(0, 0, 0, 255);
+		// instructions:
+		textSize(32);
+		textAlign(CENTER);
+		text("Say an I Think You Should Leave... scene", width/3, height/3);
+		label = createDiv("Try hotdog, bones, cars, anymore, choking, curse, fart, please, tug, plane, or coffin!")
+		label.position(10,470);
+		label = createDiv("Say CLEAR to get them to finally leave.");
+		label.position(10, 490);
+		// myRec.onResult = showResult;
+		myRec.start();
+	}
+
+	function draw()
+	{
+		// why draw when you can talk?
+	}
+
+	// function showResult()
+	// {
+	// 	if(myRec.resultValue==true) {
+	// 		background(192, 255, 192);
+	// 		text(myRec.resultString, width/2, height/2);
+	// 		console.log(myRec.resultString);
+	// 	}
+	// }
+
+	function parseResult()
+	{
+		// recognition system will often append words into phrases.
+		// so hack here is to only use the last word:
+		var mostrecentword = myRec.resultString.split(' ').pop();
+		if(mostrecentword.indexOf("more")!==-1) {
+			image(anymore, 0, 0, 800, 450);
+			myVoice.speak('I dont want to be around anymore');
+
+		}
+		else if(mostrecentword.indexOf("bones")!==-1) {
+			image(bones, 0, 0, 800, 450);
+			myVoice.speak('no thats why im so FUCKING confused!!');
+		}
+		else if(mostrecentword.indexOf("cars")!==-1) {
+			image(cars, 0, 0, 800, 450); 
+			myVoice.speak('If I dont have triples, then the other stuff isnt true either');
+		}
+		else if(mostrecentword.indexOf("choking")!==-1) {
+			image(choking, 0, 0, 800, 450); 
+			myVoice.speak('You cant. skip. lunch.');
+		}
+		else if(mostrecentword.indexOf("curse")!==-1) {
+			image(curse, 0, 0, 800, 450); 
+			myVoice.speak('not trying to be funny, not trying to get a laugh. I dont want anybody to have the worst day at their job');
+		}
+		else if(mostrecentword.indexOf("fart")!==-1) {
+			image(fart, 0, 0, 800, 450); 
+			myVoice.speak('So Whats The Joke? That I Had A Milder Fart Than I Normally Do?');
+		}
+		else if(mostrecentword.indexOf("dog")!==-1) {
+			image(hotdog, 0, 0, 800, 450);
+			myVoice.speak('i dont have to sit here and be insulted like this. Im just gonna take as many suits as i can grab, get in that, random hot dog car? RANDOM!!! And drive back to wiener hall.'); 
+		}
+		else if(mostrecentword.indexOf("please")!==-1) {
+			image(please, 0, 0, 800, 450);
+			myVoice.speak('Call me now please!!');
+		}
+		else if(mostrecentword.indexOf("flash")!==-1) {
+			image(shirt, 0, 0, 800, 450); 
+			myVoice.speak('ive found this badass store called dan flashes thats my exact. style.');
+		}
+		else if(mostrecentword.indexOf("tug")!==-1) {
+			image(tugger, 0, 0, 800, 450); 
+			myVoice.speak('Theyre not a joke. You dont wear them as a joke. You dont give them out as joke gifts or wear them ironically. ');
+		}
+		else if(mostrecentword.indexOf("plane")!==-1) {
+			image(wah, 0, 0, 800, 450); 
+			myVoice.speak('im going to cry the. whole. flight. WAHHHHHHHHHHHHHHHHHHHHHHHHH!!');
+		}
+		else if(mostrecentword.indexOf("coffin")!==-1) {
+			image(coffin, 0, 0, 800, 450); 
+			myVoice.speak('were just shooting funerals and showing the ones where the bodies fly out');
+		}
+		else if(mostrecentword.indexOf("clear")!==-1) {
+			background(255); 
+			myVoice.stop();
+		}
+		console.log(mostrecentword);
+	}
+
+</script>
+</head>
+<body>
+</body>
+</html>
